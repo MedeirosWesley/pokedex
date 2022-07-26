@@ -6,7 +6,7 @@ class PokemonService {
 
   Future<List<PokemonModel>> fetchPokemon() async {
     try {
-      for (int i = 1; i <= 20; i++) {
+      for (int i = 1; i <= 21; i++) {
         String url = 'https://pokeapi.glitch.me/v1/pokemon/$i';
         final response = await Dio().get(url);
         final list = response.data as List;

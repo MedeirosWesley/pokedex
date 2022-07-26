@@ -38,42 +38,62 @@ class _MyHomePageState extends State<MyHomePage> {
   final store = PokemonStore(PokemonService());
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: ValueListenableBuilder(
-        valueListenable: store,
-        builder: (_, state, child) {
-          if (state is LoadingPokemonState) {
-            return Center(
-              child: Column(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      "Buscando Dados",
-                      style:
-                          TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+      body: Column(
+        children: [
+          Stack(
+            children: [
+              Positioned(
+                  //     child: Image.asset(
+                  //   'assets/Pokebola.jpg',
+                  //   height: size.height * .3,
+                  // )),
+                  child: Container(height: size.height * .3)),
+            ],
+          ),
+          Expanded(
+            child: ValueListenableBuilder(
+              valueListenable: store,
+              builder: (_, state, child) {
+                if (state is LoadingPokemonState) {
+                  return Center(
+                    child: Column(
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Buscando Dados",
+                            style: TextStyle(
+                                fontSize: 36, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        CircularProgressIndicator(),
+                      ],
                     ),
-                  ),
-                  CircularProgressIndicator(),
-                ],
-              ),
-            );
-          }
-          if (state is ErrorPokemonState) {
-            return Center(
-              child: Text(state.message),
-            );
-          }
-          if (state is SuccessPokemonState) {
-            return ListView.builder(
-                itemCount: state.pokemons.length,
-                itemBuilder: (_, index) {
-                  final pokemon = state.pokemons[index];
-                  return Image.network(pokemon.sprite);
-                });
-          }
-          return Container();
-        },
+                  );
+                }
+                if (state is ErrorPokemonState) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                }
+                if (state is SuccessPokemonState) {
+                  return GridView.builder(
+                      itemCount: state.pokemons.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3),
+                      itemBuilder: (_, index) {
+                        final pokemon = state.pokemons[index];
+                        return Image.network(pokemon.sprite);
+                      });
+                }
+                return Container();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
