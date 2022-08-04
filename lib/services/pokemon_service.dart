@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 
@@ -6,25 +8,28 @@ class PokemonService {
 
   Future<List<PokemonModel>> fetchPokemon() async {
     try {
-      for (int i = 1; i <= 28; i++) {
-        String url = 'https://pokeapi.glitch.me/v1/pokemon/$i';
-        final response = await Dio().get(url);
-        final list = response.data as List;
-        final info = list[0];
+      String url =
+          'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
+      final response = await Dio().get(url);
+      final info = jsonDecode(response.data);
+      final aux = info['pokemon'];
+      for (var element in aux) {
         final map = {
-          'id': info['number'],
-          'name': info['name'],
-          'types': info['types'],
-          'abilities': info['abilities'],
-          'height': info['height'],
-          'weight': info['weight'],
-          'sprite': info['sprite'],
-          'description': info['description']
+          'id': element['id'].toString(),
+          'name': element['name'],
+          'types': element['type'],
+          'abilities': {},
+          'height': element['height'],
+          'weight': element['weight'],
+          'sprite':
+              'https://cdn.traction.one/pokedex/pokemon/${element['id']}.png',
+          'description': ''
         };
         pokemonList.add(PokemonModel.fromMap(map));
       }
     } catch (e) {
       print(e);
+      Exception(e);
     }
     return pokemonList;
   }

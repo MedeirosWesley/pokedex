@@ -3,6 +3,7 @@ import 'package:pokedex/colors_types.dart';
 import 'package:pokedex/services/pokemon_service.dart';
 import 'package:pokedex/states/pokemon_state.dart';
 import 'package:pokedex/stores/pokemon_store.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var heigthContainer = size.height * .2;
+    final imageWidth = (size.width - 40) / 3 - 45;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -69,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 right: size.width / 2 - 89,
                 child: Image.asset(
                   'assets/Pokemon-Logo.png',
-                  height: 100,
+                  width: size.width / 5,
                 ),
               ),
               Positioned(
@@ -153,14 +155,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                             child: Column(
                               children: [
-                                Image.network(
-                                  pokemon.sprite,
-                                  width: (size.width - 40) / 3 - 45,
+                                CachedNetworkImage(
+                                  imageUrl: pokemon.sprite,
+                                  width: imageWidth,
+                                  height: imageWidth,
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          CircularProgressIndicator(
+                                    value: downloadProgress.progress,
+                                    color: Colors.white,
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset('assets/Pokebola.png',
+                                          width: imageWidth),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: Text(
                                     pokemon.name,
+                                    overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.bold),
