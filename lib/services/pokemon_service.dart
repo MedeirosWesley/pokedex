@@ -5,6 +5,7 @@ import 'package:pokedex/models/pokemon_model.dart';
 
 class PokemonService {
   List<PokemonModel> pokemonList = [];
+  // https://pokeapi.glitch.me/v1/pokemon/1
 
   Future<List<PokemonModel>> fetchPokemon() async {
     try {
