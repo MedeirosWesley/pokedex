@@ -47,57 +47,58 @@ class _MyHomePageState extends State<MyHomePage> {
     final imageWidth = (size.width - 40) / 3 - 45;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              Positioned(
-                  child: Container(
-                color: Colors.transparent,
-                height: heigthContainer + 60,
-              )),
-              Positioned(
-                  child: Container(
-                      height: heigthContainer, color: const Color(0xFFFE0000))),
-              Positioned(
-                  top: heigthContainer,
-                  child: Container(
-                    height: 30,
-                    width: size.width,
-                    color: Colors.black,
-                  )),
-              Positioned(
-                top: heigthContainer / 2 - 50,
-                right: size.width / 2 - 89,
-                child: Image.asset(
-                  'assets/Pokemon-Logo.png',
-                  width: size.width / 5,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Positioned(
+                    child: Container(
+                  color: Colors.transparent,
+                  height: heigthContainer + 60,
+                )),
+                Positioned(
+                    child: Container(
+                        height: heigthContainer,
+                        color: const Color(0xFFFE0000))),
+                Positioned(
+                    top: heigthContainer,
+                    child: Container(
+                      height: 30,
+                      width: size.width,
+                      color: Colors.black,
+                    )),
+                Positioned(
+                  top: heigthContainer / 2 - 50,
+                  right: size.width / 2 - 100,
+                  child: Image.asset(
+                    'assets/Pokemon-Logo.png',
+                    width: size.width / 2,
+                  ),
                 ),
-              ),
-              Positioned(
-                  top: heigthContainer - 25,
-                  left: size.width / 2 - 40,
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(50)),
-                  )),
-              Positioned(
-                  top: heigthContainer - 10,
-                  left: size.width / 2 - 25,
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50)),
-                  )),
-            ],
-          ),
-          Expanded(
-            child: ValueListenableBuilder(
+                Positioned(
+                    top: heigthContainer - 25,
+                    left: size.width / 2 - 40,
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(50)),
+                    )),
+                Positioned(
+                    top: heigthContainer - 10,
+                    left: size.width / 2 - 25,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50)),
+                    )),
+              ],
+            ),
+            ValueListenableBuilder(
               valueListenable: store,
               builder: (_, state, child) {
                 if (state is LoadingPokemonState) {
@@ -124,6 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
                 if (state is SuccessPokemonState) {
                   return GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       itemCount: state.pokemons.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -188,8 +191,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Container();
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
