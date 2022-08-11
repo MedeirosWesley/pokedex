@@ -1,0 +1,164 @@
+import 'package:flutter/material.dart';
+
+class PokemonPage extends StatefulWidget {
+  PokemonPage({Key? key, required color, required pokemon}) : super(key: key);
+
+  @override
+  State<PokemonPage> createState() => _PokemonPageState();
+}
+
+class _PokemonPageState extends State<PokemonPage> {
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Container(
+        color: Colors.white,
+        height: size.height,
+        child: Stack(
+          children: [
+            Positioned(
+                child: Container(
+                    height: size.height * .5 + 40,
+                    color: Colors.amber,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/Pokebola.png',
+                        height: (size.height * .5) * .8,
+                      ),
+                    ))),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: GestureDetector(
+                child: Icon(
+                  Icons.arrow_back,
+                  size: 40,
+                ),
+                onTap: () {},
+              ),
+            ),
+            Positioned(
+                top: size.height * .5,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40)),
+                  ),
+                  height: size.height * .7,
+                  width: size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Text(
+                            "Pokemon",
+                            style: TextStyle(
+                                fontSize: 26,
+                                decoration: TextDecoration.none,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+                            style: TextStyle(
+                              fontSize: 14,
+                              decoration: TextDecoration.none,
+                            ),
+                            textAlign: TextAlign.justify,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Peso: 100KG",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                              Text(
+                                "Altura: 2M",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.red,
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              "Abilidades",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Normal: Abilidade normal',
+                            style: TextStyle(
+                              fontSize: 14,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Especial: Abilidade especial',
+                            style: TextStyle(
+                              fontSize: 14,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )),
+            Positioned(
+                left:
+                    (size.width - (size.height * .08 + 10)) - size.height * .08,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Image.asset(
+                    'assets/Pokebola.png',
+                    height: size.height * .08,
+                  ),
+                )),
+            Positioned(
+                left: size.width - (size.height * .08 + 10),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Image.asset(
+                    'assets/Pokebola.png',
+                    height: size.height * .08,
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+}

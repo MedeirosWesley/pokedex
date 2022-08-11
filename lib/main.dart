@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/pages/home_page.dart';
+import 'package:pokedex/pages/pokemon_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pokedex',
       theme: ThemeData(useMaterial3: true),
-      home: HomePage(),
+      home: PokemonPage(color: Colors.accents, pokemon: "a"),
     );
   }
 }
