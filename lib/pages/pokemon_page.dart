@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PokemonPage extends StatefulWidget {
   PokemonPage({Key? key, required color, required pokemon}) : super(key: key);
@@ -20,10 +21,14 @@ class _PokemonPageState extends State<PokemonPage> {
             Positioned(
                 child: Container(
                     height: size.height * .5 + 40,
-                    color: Colors.amber,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Colors.white, Colors.orange],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter)),
                     child: Center(
-                      child: Image.asset(
-                        'assets/Pokebola.png',
+                      child: Image.network(
+                        'https://cdn.traction.one/pokedex/pokemon/6.png',
                         height: (size.height * .5) * .8,
                       ),
                     ))),
@@ -38,10 +43,10 @@ class _PokemonPageState extends State<PokemonPage> {
               ),
             ),
             Positioned(
-                top: size.height * .5,
+                top: size.height * .45,
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.teal,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40)),
@@ -57,6 +62,7 @@ class _PokemonPageState extends State<PokemonPage> {
                           child: Text(
                             "Pokemon",
                             style: TextStyle(
+                                color: Colors.black,
                                 fontSize: 26,
                                 decoration: TextDecoration.none,
                                 fontWeight: FontWeight.bold),
@@ -66,7 +72,8 @@ class _PokemonPageState extends State<PokemonPage> {
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
+                              color: Colors.black,
                               fontSize: 14,
                               decoration: TextDecoration.none,
                             ),
@@ -80,7 +87,8 @@ class _PokemonPageState extends State<PokemonPage> {
                             children: [
                               Text(
                                 "Peso: 100KG",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
+                                  color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
@@ -88,7 +96,8 @@ class _PokemonPageState extends State<PokemonPage> {
                               ),
                               Text(
                                 "Altura: 2M",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
+                                  color: Colors.black,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
@@ -97,15 +106,16 @@ class _PokemonPageState extends State<PokemonPage> {
                             ],
                           ),
                         ),
-                        Divider(
-                          color: Colors.red,
+                        const Divider(
+                          color: Colors.black,
                         ),
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Text(
                               "Abilidades",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
+                                color: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.none,
@@ -117,7 +127,8 @@ class _PokemonPageState extends State<PokemonPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Normal: Abilidade normal',
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
+                              color: Colors.black,
                               fontSize: 14,
                               decoration: TextDecoration.none,
                             ),
@@ -127,7 +138,8 @@ class _PokemonPageState extends State<PokemonPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Especial: Abilidade especial',
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
+                              color: Colors.black,
                               fontSize: 14,
                               decoration: TextDecoration.none,
                             ),
@@ -143,7 +155,7 @@ class _PokemonPageState extends State<PokemonPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    'assets/Pokebola.png',
+                    'assets/pokemons_types/Dragon.png',
                     height: size.height * .08,
                   ),
                 )),
@@ -152,7 +164,7 @@ class _PokemonPageState extends State<PokemonPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    'assets/Pokebola.png',
+                    'assets/pokemons_types/Fire.png',
                     height: size.height * .08,
                   ),
                 )),
