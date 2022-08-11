@@ -21,7 +21,7 @@ class _PokemonPageState extends State<PokemonPage> {
             Positioned(
                 child: Container(
                     height: size.height * .5 + 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         gradient: LinearGradient(
                             colors: [Colors.white, Colors.orange],
                             begin: Alignment.topCenter,
@@ -35,7 +35,7 @@ class _PokemonPageState extends State<PokemonPage> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: GestureDetector(
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back,
                   size: 40,
                 ),
@@ -46,8 +46,15 @@ class _PokemonPageState extends State<PokemonPage> {
                 top: size.height * .45,
                 child: Container(
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.shade900,
+                          spreadRadius: 2,
+                          blurRadius: 15,
+                          offset: Offset(0, 3))
+                    ],
                     color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40)),
                   ),
@@ -58,12 +65,12 @@ class _PokemonPageState extends State<PokemonPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
+                        const Center(
                           child: Text(
                             "Pokemon",
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 26,
+                                fontSize: 28,
                                 decoration: TextDecoration.none,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -74,7 +81,7 @@ class _PokemonPageState extends State<PokemonPage> {
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
                             style: GoogleFonts.inter(
                               color: Colors.black,
-                              fontSize: 14,
+                              fontSize: 16,
                               decoration: TextDecoration.none,
                             ),
                             textAlign: TextAlign.justify,
@@ -89,7 +96,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                 "Peso: 100KG",
                                 style: GoogleFonts.inter(
                                   color: Colors.black,
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
                                 ),
@@ -98,7 +105,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                 "Altura: 2M",
                                 style: GoogleFonts.inter(
                                   color: Colors.black,
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
                                 ),
@@ -116,7 +123,7 @@ class _PokemonPageState extends State<PokemonPage> {
                               "Abilidades",
                               style: GoogleFonts.inter(
                                 color: Colors.black,
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.none,
                               ),
@@ -129,7 +136,7 @@ class _PokemonPageState extends State<PokemonPage> {
                             'Normal: Abilidade normal',
                             style: GoogleFonts.inter(
                               color: Colors.black,
-                              fontSize: 14,
+                              fontSize: 16,
                               decoration: TextDecoration.none,
                             ),
                           ),
@@ -140,7 +147,7 @@ class _PokemonPageState extends State<PokemonPage> {
                             'Especial: Abilidade especial',
                             style: GoogleFonts.inter(
                               color: Colors.black,
-                              fontSize: 14,
+                              fontSize: 16,
                               decoration: TextDecoration.none,
                             ),
                           ),
