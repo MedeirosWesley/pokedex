@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../services/pokemonView_service.dart';
+
 class PokemonPage extends StatefulWidget {
   PokemonPage({Key? key, required color, required pokemon}) : super(key: key);
 
@@ -10,7 +12,18 @@ class PokemonPage extends StatefulWidget {
 
 class _PokemonPageState extends State<PokemonPage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  teste() async {
+    var pokemonservice = PokemonViewService();
+    var pokemon = await pokemonservice.fetchPokemon(id: '1');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    teste();
     var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
@@ -96,7 +109,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                 "Peso: 100KG",
                                 style: GoogleFonts.inter(
                                   color: Colors.black,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
                                 ),
@@ -105,7 +118,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                 "Altura: 2M",
                                 style: GoogleFonts.inter(
                                   color: Colors.black,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.none,
                                 ),
@@ -123,7 +136,7 @@ class _PokemonPageState extends State<PokemonPage> {
                               "Abilidades",
                               style: GoogleFonts.inter(
                                 color: Colors.black,
-                                fontSize: 20,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.none,
                               ),
@@ -136,7 +149,7 @@ class _PokemonPageState extends State<PokemonPage> {
                             'Normal: Abilidade normal',
                             style: GoogleFonts.inter(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 14,
                               decoration: TextDecoration.none,
                             ),
                           ),
@@ -147,7 +160,7 @@ class _PokemonPageState extends State<PokemonPage> {
                             'Especial: Abilidade especial',
                             style: GoogleFonts.inter(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 14,
                               decoration: TextDecoration.none,
                             ),
                           ),
