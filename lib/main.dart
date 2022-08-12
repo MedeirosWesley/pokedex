@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pokedex',
       theme: ThemeData(useMaterial3: true),
-      home: PokemonPage(color: Colors.black, pokemonId: "1"),
+      home: PokemonPage(color: Colors.black, pokemonId: "27"),
     );
   }
 }
