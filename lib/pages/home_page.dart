@@ -14,14 +14,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var colorType = ColorType();
+  final store = PokemonStore(PokemonService());
+
   @override
   void initState() {
     super.initState();
     store.fetchPokemons();
   }
 
-  var colorType = ColorType();
-  final store = PokemonStore(PokemonService());
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

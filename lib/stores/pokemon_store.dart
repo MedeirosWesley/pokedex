@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/services/pokemon_service.dart';
 
 import '../states/pokemon_state.dart';

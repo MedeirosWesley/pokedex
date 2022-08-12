@@ -1,16 +1,8 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:pokedex/models/pokemonView_model.dart';
-import 'package:pokedex/models/pokemon_model.dart';
 import 'package:translator/translator.dart';
 
 class PokemonViewService {
-  List<PokemonModel> pokemonList = [];
-  // https://pokeapi.glitch.me/v1/pokemon/1
-
   Future<PokemonViewModel> fetchPokemon({required String id}) async {
     try {
       String url = 'https://pokeapi.glitch.me/v1/pokemon/$id';
@@ -32,7 +24,6 @@ class PokemonViewService {
         'sprite': info['sprite'],
         'description': description,
       };
-      print(map);
       return PokemonViewModel.fromMap(map);
     } catch (e) {
       throw Exception();
