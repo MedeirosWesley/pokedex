@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pokedex/pages/pokemon_page.dart';
 
 import '../colors_types.dart';
 import '../services/pokemon_service.dart';
@@ -19,6 +21,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     super.initState();
     store.fetchPokemons();
   }
@@ -42,8 +47,15 @@ class _HomePageState extends State<HomePage> {
                 )),
                 Positioned(
                     child: Container(
-                        height: heigthContainer,
-                        color: const Color(0xFFFE0000))),
+                  height: heigthContainer,
+                  color: const Color(0xFFFE0000),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/Pokemon-Logo.png',
+                      width: size.width / 2,
+                    ),
+                  ),
+                )),
                 Positioned(
                     top: heigthContainer,
                     child: Container(
@@ -51,14 +63,6 @@ class _HomePageState extends State<HomePage> {
                       width: size.width,
                       color: Colors.black,
                     )),
-                Positioned(
-                  top: heigthContainer / 2 - 50,
-                  right: size.width / 2 - 100,
-                  child: Image.asset(
-                    'assets/Pokemon-Logo.png',
-                    width: size.width / 2,
-                  ),
-                ),
                 Positioned(
                     top: heigthContainer - 25,
                     left: size.width / 2 - 40,
@@ -123,7 +127,8 @@ class _HomePageState extends State<HomePage> {
                             constraints:
                                 BoxConstraints(maxWidth: (size.width - 50) / 3),
                             decoration: BoxDecoration(
-                                color: colorType.selectColor(pokemon.types[0]),
+                                color: (colorType.selectColor(pokemon.types[0]))
+                                    .withOpacity(.2),
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -139,33 +144,44 @@ class _HomePageState extends State<HomePage> {
                                     spreadRadius: 1,
                                   )
                                 ]),
-                            child: Column(
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl: pokemon.sprite,
-                                  width: imageWidth,
-                                  height: imageWidth,
-                                  progressIndicatorBuilder:
-                                      (context, url, downloadProgress) =>
-                                          CircularProgressIndicator(
-                                    value: downloadProgress.progress,
-                                    color: Colors.white,
+                            child: GestureDetector(
+                              onTap: (() {
+                                print(pokemon.types);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: ((context) => PokemonPage(
+                                          pokemonId: pokemon.id,
+                                          color: colorType
+                                              .selectColor(pokemon.types[0]),
+                                        ))));
+                              }),
+                              child: Column(
+                                children: [
+                                  CachedNetworkImage(
+                                    imageUrl: pokemon.sprite,
+                                    width: imageWidth,
+                                    height: imageWidth,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            CircularProgressIndicator(
+                                      value: downloadProgress.progress,
+                                      color: Colors.white,
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Image.asset('assets/Pokebola.png',
+                                            width: imageWidth),
                                   ),
-                                  errorWidget: (context, url, error) =>
-                                      Image.asset('assets/Pokebola.png',
-                                          width: imageWidth),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text(
-                                    pokemon.name,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text(
+                                      pokemon.name,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -178,5 +194,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
   }
 }

@@ -4,44 +4,41 @@ class ColorType {
   Color selectColor(String type) {
     switch (type.toLowerCase()) {
       case 'bug':
-        return Colors.green.withOpacity(.5);
-        ;
+        return Colors.green;
       case 'dark':
-        return Colors.black.withOpacity(.5);
-        ;
+        return Colors.black;
       case 'dragon':
-        return Colors.blue.withOpacity(.2);
-      case 'eletric':
-        return Colors.yellow.withOpacity(.2);
-        ;
+        return Colors.blue;
+      case 'electric':
+        return Colors.yellow;
       case 'fairy':
-        return Colors.purpleAccent.withOpacity(.2);
+        return Colors.purpleAccent;
       case 'fighting':
-        return Colors.pink.withOpacity(.2);
+        return Colors.pink;
       case 'fire':
-        return Colors.red.withOpacity(.2);
+        return Colors.red;
       case 'flying':
-        return Colors.blueAccent.withOpacity(.2);
-      case 'gost':
-        return Colors.indigo.withOpacity(.2);
+        return Colors.blueAccent;
+      case 'ghost':
+        return Colors.indigo;
       case 'grass':
-        return Colors.greenAccent.withOpacity(.2);
+        return Colors.greenAccent;
       case 'ground':
-        return Colors.orange.withOpacity(.2);
+        return Colors.orange;
       case 'ice':
-        return Colors.cyan.withOpacity(.2);
+        return Colors.cyan;
       case 'normal':
-        return Colors.grey.withOpacity(.2);
+        return Colors.grey;
       case 'poison':
-        return Colors.deepPurple.withOpacity(.2);
+        return Colors.deepPurple;
       case 'psychic':
-        return Colors.pinkAccent.withOpacity(.2);
+        return Colors.pinkAccent;
       case 'rock':
-        return Colors.brown.withOpacity(.2);
+        return Colors.brown;
       case 'steel':
-        return Colors.teal.withOpacity(.2);
+        return Colors.teal;
       case 'water':
-        return Colors.lightBlue.withOpacity(.2);
+        return Colors.lightBlue;
       default:
         return Colors.white;
     }

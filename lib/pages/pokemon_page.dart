@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/models/pokemonView_model.dart';
-import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/states/pokemonView_state.dart';
 import 'package:pokedex/stores/pokemonview_store.dart';
 
@@ -22,6 +22,7 @@ class _PokemonPageState extends State<PokemonPage> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.initState();
     store.fetchPokemon(widget.pokemonId);
   }
@@ -75,7 +76,9 @@ class _PokemonPageState extends State<PokemonPage> {
                           Icons.arrow_back,
                           size: 40,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ),
                     Positioned(
@@ -181,7 +184,9 @@ class _PokemonPageState extends State<PokemonPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Especial: ${pokemon.abilities['hidden'][0]}',
+                                    (pokemon.abilities['hidden'].length > 0)
+                                        ? 'Especial: ${pokemon.abilities['hidden'][0]}'
+                                        : 'Especial: -',
                                     style: GoogleFonts.inter(
                                       color: Colors.black,
                                       fontSize: 14,
@@ -225,5 +230,16 @@ class _PokemonPageState extends State<PokemonPage> {
         },
       ),
     );
+  }
+
+  @override
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
   }
 }
