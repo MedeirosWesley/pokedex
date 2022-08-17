@@ -12,6 +12,5 @@ Aplicativo de uma pokedex da 1ª gnr:
 * Android 
 
 # Api's utilizadas ⚡
-
 * https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
 * https://pokeapi.glitch.me/v1/pokemon/1

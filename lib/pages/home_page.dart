@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/pages/pokemon_page.dart';
 
 import '../colors_types.dart';
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var heigthContainer = size.height * .2;
-    final imageWidth = (size.width - 40) / 3 - 45;
+    final imageWidth = size.width / 3 - 25;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -111,24 +112,22 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
                 if (state is SuccessPokemonState) {
-                  return GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                  return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: state.pokemons.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3),
                       itemBuilder: (_, index) {
                         final pokemon = state.pokemons[index];
                         return Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
                             padding: const EdgeInsets.all(8),
+                            height: 130,
                             constraints:
-                                BoxConstraints(maxWidth: (size.width - 50) / 3),
+                                BoxConstraints(maxWidth: (size.width - 50)),
                             decoration: BoxDecoration(
                                 color: (colorType.selectColor(pokemon.types[0]))
-                                    .withOpacity(.2),
+                                    .withOpacity(.6),
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -146,7 +145,6 @@ class _HomePageState extends State<HomePage> {
                                 ]),
                             child: GestureDetector(
                               onTap: (() {
-                                print(pokemon.types);
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: ((context) => PokemonPage(
                                           pokemonId: pokemon.id,
@@ -154,30 +152,47 @@ class _HomePageState extends State<HomePage> {
                                               .selectColor(pokemon.types[0]),
                                         ))));
                               }),
-                              child: Column(
+                              child: Stack(
                                 children: [
-                                  CachedNetworkImage(
-                                    imageUrl: pokemon.sprite,
-                                    width: imageWidth,
-                                    height: imageWidth,
-                                    progressIndicatorBuilder:
-                                        (context, url, downloadProgress) =>
-                                            CircularProgressIndicator(
-                                      value: downloadProgress.progress,
-                                      color: Colors.white,
+                                  Positioned(
+                                    bottom: 130 / 2 - 120,
+                                    child: Text(
+                                      '#${pokemon.id}',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.rubikMicrobe(
+                                          color: Colors.white.withOpacity(.4),
+                                          fontSize: 130,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    errorWidget: (context, url, error) =>
-                                        Image.asset('assets/Pokebola.png',
-                                            width: imageWidth),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
+                                  Positioned(
+                                    left: 10,
+                                    bottom: 130 / 2 - 45,
                                     child: Text(
                                       pokemon.name,
                                       overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                          fontSize: 10,
+                                      style: GoogleFonts.rubikMonoOne(
+                                          color: Colors.white,
+                                          fontSize: 35,
                                           fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: (130 / 2) - (imageWidth / 2) - 10,
+                                    left: size.width - (imageWidth + 30),
+                                    child: CachedNetworkImage(
+                                      imageUrl: pokemon.sprite,
+                                      width: imageWidth,
+                                      height: imageWidth,
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              CircularProgressIndicator(
+                                        value: downloadProgress.progress,
+                                        color: Colors.white,
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          Image.asset('assets/Pokebola.png',
+                                              width: imageWidth),
                                     ),
                                   ),
                                 ],

@@ -22,7 +22,7 @@ class ColorType {
       case 'ghost':
         return Colors.indigo;
       case 'grass':
-        return Colors.greenAccent;
+        return Colors.lightGreen.shade800;
       case 'ground':
         return Colors.orange;
       case 'ice':

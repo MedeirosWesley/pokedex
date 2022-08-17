@@ -107,11 +107,11 @@ class _PokemonPageState extends State<PokemonPage> {
                                 Center(
                                   child: Text(
                                     pokemon.name,
-                                    style: GoogleFonts.inter(
+                                    style: GoogleFonts.rubikMonoOne(
                                         color: Colors.black,
                                         fontSize: 28,
                                         decoration: TextDecoration.none,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w200),
                                   ),
                                 ),
                                 Padding(
