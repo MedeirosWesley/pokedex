@@ -2,7 +2,7 @@
 Aplicativo de uma pokedex da 1ª gnr:
 
 # Imagens 🖼️
-![alt text](https://github.com/MedeirosWesley/pokedex/blob/main/pokedexApp.png)
+![alt text](https://github.com/MedeirosWesley/pokedex/blob/main/AppPokedex.png)
 
 # Tecnologias Utilizadas 🔍
 * Dart
