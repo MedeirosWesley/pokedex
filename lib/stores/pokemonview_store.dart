@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import '../services/pokemonView_service.dart';
-import '../states/pokemonView_state.dart';
+import '../services/pokemon_view_service.dart';
+import '../states/pokemon_view_state.dart';
 
 class PokemonViewStore extends ValueNotifier<PokemonViewState> {
   final PokemonViewService service;

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokedex/models/pokemonView_model.dart';
-import 'package:pokedex/states/pokemonView_state.dart';
+import 'package:pokedex/models/pokemon_view_model.dart';
+import 'package:pokedex/states/pokemon_view_state.dart';
 import 'package:pokedex/stores/pokemonview_store.dart';
 
-import '../services/pokemonView_service.dart';
+import '../services/pokemon_view_service.dart';
 
 class PokemonPage extends StatefulWidget {
-  Color color;
-  String pokemonId;
-  PokemonPage({Key? key, required this.color, required this.pokemonId})
+  final Color color;
+  final String pokemonId;
+  const PokemonPage({Key? key, required this.color, required this.pokemonId})
       : super(key: key);
 
   @override
@@ -90,7 +90,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                   color: Colors.grey.shade900,
                                   spreadRadius: 2,
                                   blurRadius: 15,
-                                  offset: Offset(0, 3))
+                                  offset: const Offset(0, 3))
                             ],
                             color: Colors.grey.shade100,
                             borderRadius: const BorderRadius.only(
@@ -160,7 +160,7 @@ class _PokemonPageState extends State<PokemonPage> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: Text(
-                                      "Abilidades",
+                                      "Habilidades",
                                       style: GoogleFonts.inter(
                                         color: Colors.black,
                                         fontSize: 18,

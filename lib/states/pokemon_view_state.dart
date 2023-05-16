@@ -1,4 +1,5 @@
-import '../models/pokemonView_model.dart';
+
+import 'package:pokedex/models/pokemon_view_model.dart';
 
 abstract class PokemonViewState {}
 

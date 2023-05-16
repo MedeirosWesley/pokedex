@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:pokedex/models/pokemonView_model.dart';
+import 'package:pokedex/models/pokemon_view_model.dart';
 import 'package:translator/translator.dart';
 
 class PokemonViewService {
@@ -8,7 +8,7 @@ class PokemonViewService {
       String url = 'https://pokeapi.glitch.me/v1/pokemon/$id';
       final response = await Dio().get(url);
       final info = response.data[0];
-      var description;
+      String? description;
       await GoogleTranslator()
           .translate(info['description'], from: 'en', to: 'pt')
           .then((value) => description = value.text);

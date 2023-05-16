@@ -10,7 +10,7 @@ import '../states/pokemon_state.dart';
 import '../stores/pokemon_store.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();

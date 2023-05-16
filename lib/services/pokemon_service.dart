@@ -21,14 +21,12 @@ class PokemonService {
           'abilities': {},
           'height': element['height'],
           'weight': element['weight'],
-          'sprite':
-              'https://cdn.traction.one/pokedex/pokemon/${element['id']}.png',
+          'sprite': element['img'],
           'description': ''
         };
         pokemonList.add(PokemonModel.fromMap(map));
       }
     } catch (e) {
-      print(e);
       Exception(e);
     }
     return pokemonList;
